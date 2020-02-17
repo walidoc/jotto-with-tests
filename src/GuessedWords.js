@@ -7,8 +7,8 @@ const GuessedWords = ({ guessedWords }) => {
       { guessedWords.length ? (
         <div data-test="guessed-words-section">
           <h3>Guessed Words</h3>
-          <table>
-            <thead>
+          <table className="table table-sm">
+            <thead className="thead-light">
               <tr>
                 <th>Guess</th>
                 <th>Matching Letters</th>
@@ -28,7 +28,7 @@ const GuessedWords = ({ guessedWords }) => {
         </div>
       ): (
         <div data-test="guessed-instructions-cmp">
-          <span>some instructions</span>
+          <span>Try to guess the secret word</span>
         </div>
       )}
     </div>

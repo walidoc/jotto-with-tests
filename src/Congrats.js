@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 const Congrats = ({success}) => (
   <div data-test="congrats-component">
     { success ? (
-      <span data-test="congrats-message">
-        congrats
-      </span>
+      <div data-test="congrats-message" className="alert alert-success">
+        <span>
+          Congrats! you guessed the word!
+        </span>
+      </div>
     ) : (
       <div>
-        <input placeholder="Guess word"/>
+        {/* <input placeholder="Guess word"/> */}
         {/* <label htmlFor="">Check</label> */}
       </div>
     )}
