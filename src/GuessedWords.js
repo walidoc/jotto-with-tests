@@ -5,8 +5,26 @@ const GuessedWords = ({ guessedWords }) => {
   return (
     <div data-test="guessed-words-cmp">
       { guessedWords.length ? (
-        <div>
-          <span> { guessedWords[0].guessedWord } </span>
+        <div data-test="guessed-words-section">
+          <h3>Guessed Words</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Guess</th>
+                <th>Matching Letters</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+              guessedWords.map((guessedWordObj, idx) => (
+                <tr data-test="guessed-word" key={idx}>
+                  <td> { guessedWordObj.guessedWord } </td>
+                  <td> { guessedWordObj.letterMatchCount } </td>
+                </tr>
+              ))
+            }
+            </tbody>
+          </table>
         </div>
       ): (
         <div data-test="guessed-instructions-cmp">

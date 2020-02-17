@@ -8,6 +8,10 @@ const defaultProps = {
 }
 const setup = (props = defaultProps) => shallow(<GuessedWords {...props}/>)
 
+it('does not throw worning with the expected props', () => {
+  checkProps(GuessedWords, defaultProps);
+})
+
 describe('if there is no words guessed', () => {
   let wrapper
   beforeEach(() => {
@@ -24,7 +28,25 @@ describe('if there is no words guessed', () => {
 })
 
 describe('if there are words guessed', () => {
-  it('does not throw worning with the expected props', () => {
-    checkProps(GuessedWords, defaultProps);
+  let wrapper
+  const guessedWords = [
+    { guessedWord: 'train', letterMatchCount: 3},
+    { guessedWord: 'car', letterMatchCount: 1},
+    { guessedWord: 'walid', letterMatchCount: 2}
+  ];
+  beforeEach(() => {
+    wrapper = setup({ guessedWords });
+  })
+  it('renders without errors', () => {
+    const cmp = findByTestAttr(wrapper, 'guessed-words-cmp');
+    expect(cmp.length).toBe(1);
+  })
+  it('renders "guessed words" section', () => {
+    const guessedWordsNode = findByTestAttr(wrapper, 'guessed-words-section');
+    expect(guessedWordsNode.length).toBe(1);
+  })
+  it('renders the guessed words', () => {
+    const guessedWordsNodes = findByTestAttr(wrapper, 'guessed-word');
+    expect(guessedWordsNodes.length).toBe(guessedWords.length)
   })
 })
