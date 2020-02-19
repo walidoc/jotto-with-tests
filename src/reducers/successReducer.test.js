@@ -1,5 +1,5 @@
 import successReducer from './successReducer'
-import { correctGuess } from '../actions'
+import { CORRECT_GUESS } from '../actions'
 
 describe('successReducer', () => {
   it('returns default initial state of false when no action made', () => {
@@ -7,7 +7,7 @@ describe('successReducer', () => {
     expect(state).toBe(false);
   })
   it('return the state true upon an action of type "CORRECT_GUESS"', () => {
-    const state = successReducer(undefined, correctGuess());
+    const state = successReducer(undefined, {type: CORRECT_GUESS});
     expect(state).toBe(true);
   })
 })
