@@ -6,16 +6,15 @@ import { guessWord } from './actions';
 export class UnconnectedInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      input: ''
-    }
+    this.inputBox = React.createRef();
   }
 
-  handleChange = e => {
-    this.setState({input: e.target.value});
-  }
-  handleSubmit = () => {
-    this.props.guessWord(this.state.input);
+  handleSubmit = evt => {
+    evt.preventDefault();
+    const guessedWord = this.inputBox.current.value;
+    if(guessedWord) {
+      this.props.guessWord(guessedWord);
+    }
   }
 
   render() {
@@ -31,7 +30,7 @@ export class UnconnectedInput extends Component {
               className="mb-2 mx-sm-3"
               placeholder="enter guess"
               id="word-guess"
-              onChange={this.handleChange}
+              ref={this.inputBox}
             />
             <button 
               data-test="submit-button"
