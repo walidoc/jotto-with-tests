@@ -91,4 +91,8 @@ describe('`guessWord` action creator call', () => {
   it('calls `guessWord` with input value as argument', () => {
     expect(guessWordMock).toHaveBeenCalledWith(guessWord);
   })
+
+  it('clears input box on submit', () => {
+    expect(wrapper.instance().inputBox.current.value).toBe('');
+  })
 })
